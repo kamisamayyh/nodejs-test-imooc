@@ -9,12 +9,32 @@ var mongoose = require('mongoose');
 var mongoStore = require('connect-mongo')(session);
 var logger = require('morgan');
 var ejs = require('ejs');
+var fs = require('fs');
 var port = process.env.PORT || 3000;
 var app = express();
 var dbUrl = "mongodb://localhost:27017/movies";
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbUrl);
+
+var models_path = __dirname +"/app/models";
+var walk = function(path){
+    fs
+        .readdirSync(path)
+        .forEach(function(file){
+            var newPath =path+'/'+file;
+            var stat = fs.statSync(newPath);
+            if(stat.isFile()){
+                if(/(.*)\.(js|coffee)/.test(file)){
+                    require(newPath)
+                }
+            }
+            else if(stat.isDirectory){
+                walk(newPath)
+            }
+        })
+}
+walk(models_path);
 
 //app.engine('html',ejs.__express);
 app.use(require('body-parser').urlencoded({extended: true}));
@@ -30,7 +50,7 @@ app.use(session({
     saveUninitialized: true
 
 }));
-
+app.use(require('connect-multiparty')());
 app.use(cookieParser());
 app.locals.moment = require('moment');
 

@@ -4,20 +4,30 @@
   "description": "imooc movie",
   "main": "app.js",
   "dependencies": {
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-mocha-test": "^0.13.2",
     "jade": "^1.11.0",
+    "mocha": "^3.1.2",
     "moment": "^2.15.1",
     "mongoose": "^4.6.5",
     "serve-static": "^1.11.1",
+    "should": "^11.1.1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-alpha.1",
+    "express-session": "^1.14.2",
     "grunt-concurrent": "^2.3.1",
     "grunt-contrib-nodemon": "^0.5.4",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-nodemon": "^0.4.2"
+    "grunt-nodemon": "^0.4.2",
+    "morgan": "^1.7.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
